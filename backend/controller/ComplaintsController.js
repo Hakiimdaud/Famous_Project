@@ -43,7 +43,7 @@ const updateComplaintById = async (req, res) => {
             { _id: req.params.id },
             { $set: req.body }
         );
-        res.status(200).json(updateData);
+        res.send("Updated Successfully");
     } catch (error) {
         res.status(500).json({ message: error.message });
     }   
@@ -54,7 +54,7 @@ const updateComplaintById = async (req, res) => {
 const deleteComplaintById = async (req, res) => {
     try {
         const deleteData = await ComplaintsModel.deleteOne({ _id: req.params.id });
-        res.status(200).json(deleteData);
+        res.send("Deleted Successfully");
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
@@ -67,4 +67,3 @@ module.exports = {
     updateComplaintById,
     deleteComplaintById
 };
-    
