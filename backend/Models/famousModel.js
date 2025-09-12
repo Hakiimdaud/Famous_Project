@@ -22,7 +22,7 @@ const famousSchema = mongoose.Schema({
         type:String,
         required:true,
     },
-    fullDescriptin:{
+    fullDescription:{
         type: String
     },
     category:{
