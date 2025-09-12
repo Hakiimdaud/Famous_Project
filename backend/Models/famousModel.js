@@ -15,16 +15,15 @@ const famousSchema = mongoose.Schema({
         unique: true
     },
     phone:{
-        type:Number,
-        required:true,
+        type:Number
+        
     },
     description: {
         type:String,
         required:true,
     },
     fullDescriptin:{
-        type: String,
-        required : true
+        type: String
     },
     category:{
         type : String,
