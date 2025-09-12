@@ -1,6 +1,7 @@
-import React, { useState } from 'react'
+import React, { use, useState } from 'react'
 import Dashboard from './Dashboard';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 const AddInfluencer = () => {
 
     const [name, setName] = useState('');
@@ -14,6 +15,7 @@ const AddInfluencer = () => {
     const [photo, setPhoto] = useState(null);
 
 
+    const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -36,7 +38,7 @@ const AddInfluencer = () => {
                     'Content-Type': 'multipart/form-data'
                 }
             });
-
+            navigate("/influencer");
             alert("Famous person successfully added!");
         } catch (error) {
             console.error("Error adding famous person:", error);
