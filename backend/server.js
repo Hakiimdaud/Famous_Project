@@ -5,6 +5,8 @@ const cors = require("cors")
 const famousRouter = require("./Routers/famousRouter")
 const ComplaintsRouter = require("./Routers/ComplaintsRouter")
 const contactRouter = require("./Routers/ContactRouter")
+const customerRouter = require("./Routers/customerRoute")
+const adminRouter = require("./Routers/adminRoute")
 
 const app = express()
 const PORT = process.env.port || 9000
@@ -22,6 +24,8 @@ mongoose.connect(process.env.db_url)
 app.use(famousRouter)
 app.use(ComplaintsRouter)
 app.use(contactRouter)
+app.use(customerRouter)
+app.use(adminRouter)
 
 app.use("/allImages", express.static("document"))
 
