@@ -15,7 +15,7 @@ function MainLayout({ children }) {
   return (
     <div>
       <Header />
-      <div className="p-6">{children}</div>
+      <div className="">{children}</div>
     </div>
   );
 }
