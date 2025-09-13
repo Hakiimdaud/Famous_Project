@@ -5,20 +5,17 @@ const Login = () => {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
 
-    //   const [active, setActive] = useState("customer")
+      const [active, setActive] = useState("customer")
     
     const navigate = useNavigate()
 
     const handleLogin = () => {
-        // const url = active === "customer" ? "http://localhost:3003/login/customer" : "http://localhost:3003/login/admin";
-        // const playload = {email:email, password:password};
-        axios.post("http://localhost:9000/login/customer", {
-            email: email,
-            password: password
-        }).then((res) => {
+        const url = active === "customer" ? "http://localhost:9000/login/customer" : "http://localhost:9000/login/admin";
+        const playload = {email:email, password:password};
+        axios.post(url, playload).then((res) => {
             alert("thanks you're welcome")
-            localStorage.setItem("customer", JSON.stringify(res))
-            navigate("/");
+            localStorage.setItem(active === "customer" ? "customer" : "admin", JSON.stringify(res))
+            navigate( active === "customer" ? "/" : "dashboard");
         }).catch((error) => {
             alert("email or password are incorrect")
         })
@@ -29,11 +26,11 @@ const Login = () => {
     return (
         <div className="flex justify-center items-center min-h-screen bg-gray-100">
             <form onSubmit={(e) => e.preventDefault()} className="bg-white shadow-lg rounded-xl p-8 w-full max-w-md">
-                <div className="flex justify-center mb-6">
-                    <button  className={`px-10 py-2 `} >Customer</button>
-                    <button  className={`px-10 py-2 `} >Admin</button>
+                  <div className="flex justify-center mb-6">
+                    <button onClick={() => setActive("customer")} className={`px-10 py-2 ${active === "customer" ? "bg-red-500 text-white" : "bg-gray-200 text-gray-700"}`} >Customer</button>
+                    <button onClick={() => setActive("admin")} className={`px-10 py-2 ${active === "admin" ? "bg-red-500 text-white" : "bg-gray-200 text-gray-700"}`} >Admin</button>
                 </div>
-                <h2 className="text-2xl font-bold text-center mb-6">Customer Login</h2>
+                <h2 className="text-2xl font-bold text-center mb-6">{active === "customer" ? "Customer Login" : "Admin Login"}</h2>
                 <div className="mb-4">
                     <label className="block text-gray-700 font-semibold mb-2">Email</label>
                     <input

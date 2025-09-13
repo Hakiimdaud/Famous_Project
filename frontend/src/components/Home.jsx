@@ -1,8 +1,25 @@
 // import img1 from "../src/images/dyx.jpg"
-
+import axios from "axios";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 export default function HomePage() {
+
+  const [getdata, setGetdata] = useState([]);
+
+  const handlegetData  = () => {
+    axios.get("http://localhost:9000/read/famous")
+      .then((response) => {
+        setGetdata(response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+  }
+
+  useEffect(() => {
+    handlegetData();
+  }, []);
 
   return (
     <div className="w-full min-h-screen bg-white text-gray-900">
@@ -23,21 +40,24 @@ export default function HomePage() {
       <section className="py-16 px-6">
         <h2 className="text-3xl font-bold text-center mb-10">Featured Celebrities</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
-          {[1, 2, 3, 4, 5, 6].map((id) => (
+                {getdata.map((item,index) => (
             <div
-              key={id}
+              key={index}
               className="bg-gray-50 rounded-2xl shadow-md hover:shadow-lg transition p-4 text-center"
             >
               <img
-                src=""
-                alt={`Celebrity ${id}`}
+                src={`http://localhost:9000/allImages/${item.photo}`}
+                alt={`Celebrity ${item.id}`}
                 className="w-full h-48 object-cover rounded-xl mb-4"
               />
-              <h3 className="text-xl font-semibold mb-2">Celebrity {id}</h3>
-              <p className="text-gray-600 mb-3">Actor / Singer</p>
-              <button className="bg-indigo-600 text-white px-4 py-2 rounded-xl hover:bg-indigo-700">
-                Book Now
+              <h3 className="text-xl font-semibold mb-2">{item.name}</h3>
+              <p className="text-gray-600 mb-3">{item.description}</p>
+              <p className="text-gray-600 mb-3">{item.category}</p>
+              <Link to={`/viewfamous/${item._id}`}>
+              <button className="bg-red-500 text-white w-full text-2xl py-2 rounded-xl hover:bg-red-700">
+                view Details
               </button>
+              </Link>
             </div>
           ))}
         </div>

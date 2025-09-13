@@ -11,6 +11,8 @@ import Complaints from "./pages/complint";
 import GetComplaintsData from "./pages/getcomplaintsData";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
+import ViewFamous from "./pages/ViewFamous";
+import InfluencersPage from "./pages/InfluencersPage";
 
 // Layout leh Header (Home ama pages kale)
 function MainLayout({ children }) {
@@ -58,6 +60,22 @@ function App() {
         element={
           <MainLayout>
             <Login />
+          </MainLayout>
+        }
+      />
+      <Route
+        path="/viewfamous/:id"
+        element={
+          <MainLayout>
+            <ViewFamous />
+          </MainLayout>
+        }
+      />
+      <Route
+        path="/influencers"
+        element={
+          <MainLayout>
+            <InfluencersPage />
           </MainLayout>
         }
       />

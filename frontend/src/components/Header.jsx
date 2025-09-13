@@ -22,6 +22,7 @@ function Header() {
       {/* Desktop Navigation */}
       <nav className="hidden md:flex gap-8 text-gray-700">
         <Link className="font-bold text-lg text-black" to="/">Home</Link>
+        <Link className="font-bold text-lg text-black" to="/influencers">Influencers</Link>
         <Link className="font-bold text-lg text-black" to="/complaints">Complaints</Link>
         <Link className="font-bold text-lg text-black" to="/contact">Contact</Link>
       </nav>

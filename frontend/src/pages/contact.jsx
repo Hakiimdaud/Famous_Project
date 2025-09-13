@@ -47,17 +47,20 @@ function Contact() {
                         Welcome the Place You br Send your Opinion!
                     </h1>
                     <p className="text-lg md:text-xl max-w-2xl mb-6">Have questions, ideas, or just want to say hello?
-                    I’d love to hear from you! Please fill out the form below with your details and message,
-                    and I’ll get back to you as soon as possible.</p>
+                        I’d love to hear from you! Please fill out the form below with your details and message,
+                        and I’ll get back to you as soon as possible.</p>
                     <button className="bg-white text-indigo-600 font-semibold px-6 py-3 rounded-2xl shadow hover:scale-105 transition">
                         Contact Now
                     </button>
                 </section>
 
             </div>
-            <h1 className="text-3xl md:text-5xl font-bold mb-4 text-center pt-10 pb-4">Please fill This Form</h1>
-            <p className="text-lg md:text-xl max-w-2xl mb-6 text-center ml-72">Please fill out the form below with your details and message,
+            <div className="text-center mt-10">
+                <h1 className="text-3xl md:text-5xl font-bold mb-4 text-center pt-10 pb-4">Please fill This Form</h1>
+                <p className="text-lg md:text-xl ">Please fill out the form below with your details and message,
                     and I’ll get back to you as soon as possible</p>
+            </div>
+
             <div className="flex justify-center items-center h-screen ml-[4%] -mt-28">
                 <div className="bg-gradient-to-r from-purple-500 to-red-600 w-[60%] rounded-2xl p-10 grid grid-cols-2 gap-6">
                     <input value={name} onChange={(e) => setName(e.target.value)} className="w-full h-12 rounded-lg text-lg pl-3" type="text" placeholder="Enter Name" />
