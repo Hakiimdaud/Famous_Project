@@ -3,6 +3,10 @@ import { useNavigate, useParams } from "react-router-dom";
 import Dashboard from "./Dashboard";
 import axios from "axios";
 
+// ✅ Toastify import
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 const EditInfluencer = () => {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -17,12 +21,12 @@ const EditInfluencer = () => {
   const [socialLinks, setSocialLinks] = useState([{ platform: "", url: "" }]);
   const [photo, setPhoto] = useState(null);
 
-  // Fetch single influencer data
+  // ✅ Fetch single influencer data
   useEffect(() => {
     axios
       .get(`http://localhost:9000/readSingle/famous/${id}`)
       .then((res) => {
-        const influencer = res.data; // Backend object
+        const influencer = res.data;
         setName(influencer.name);
         setAddress(influencer.address);
         setEmail(influencer.email);
@@ -30,7 +34,6 @@ const EditInfluencer = () => {
         setDescription(influencer.description);
         setFullDescription(influencer.fullDescription);
         setCategory(influencer.category);
-        // Hubi in social uu jiro
         setSocialLinks(
           influencer.social && influencer.social.length > 0
             ? influencer.social
@@ -39,10 +42,14 @@ const EditInfluencer = () => {
       })
       .catch((err) => {
         console.error(err);
-        alert("Failed to fetch influencer data");
+        toast.error("Failed to fetch influencer data!", {
+          position: "top-right",
+          autoClose: 3000,
+        });
       });
   }, [id]);
 
+  // ✅ Handle update
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -61,11 +68,19 @@ const EditInfluencer = () => {
         headers: { "Content-Type": "multipart/form-data" },
       });
 
-      alert("Influencer updated successfully!");
-      navigate("/influencer");
+      // ✅ Toast success
+      toast.success("Influencer updated successfully!", {
+        position: "top-right",
+        autoClose: 2000,
+      });
+
+      setTimeout(() => navigate("/influencer"), 2000);
     } catch (error) {
       console.error(error);
-      alert("Failed to update influencer. Check console for details.");
+      toast.error("Failed to update influencer!", {
+        position: "top-right",
+        autoClose: 4000,
+      });
     }
   };
 
@@ -77,7 +92,10 @@ const EditInfluencer = () => {
           <h1 className="text-2xl font-bold text-center mb-6 text-gray-800">
             Edit Influencer
           </h1>
-          <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <form
+            onSubmit={handleSubmit}
+            className="grid grid-cols-1 md:grid-cols-2 gap-6"
+          >
             {/* Name */}
             <div>
               <label className="block text-gray-700 mb-1">Name</label>
@@ -211,6 +229,9 @@ const EditInfluencer = () => {
           </form>
         </div>
       </div>
+
+      {/* ✅ Toast Container */}
+      <ToastContainer />
     </div>
   );
 };

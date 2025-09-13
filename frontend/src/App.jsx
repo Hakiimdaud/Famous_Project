@@ -8,7 +8,7 @@ function App() {
   return (
     <div>
       <Routes>
-        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/" element={<Dashboard />} />
         <Route path="/Addinfluencer" element={<AddInfluencer />} />
         <Route path="/influencer" element={<Influencer />} />
         <Route path="/updateinfluencer/:id" element={<EditInfluencer />} />

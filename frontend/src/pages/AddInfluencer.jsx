@@ -1,7 +1,12 @@
-import React, { use, useState } from 'react'
+import React, { useState } from 'react'
 import Dashboard from './Dashboard';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+
+// ✅ Toastify
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 const AddInfluencer = () => {
 
     const [name, setName] = useState('');
@@ -13,7 +18,6 @@ const AddInfluencer = () => {
     const [category, setCategory] = useState('');
     const [socialLinks, setSocialLinks] = useState([{ platform: '', url: '' }]);
     const [photo, setPhoto] = useState(null);
-
 
     const navigate = useNavigate();
 
@@ -30,7 +34,7 @@ const AddInfluencer = () => {
             formData.append("category", category);
             formData.append("img", photo);
 
-            // ✅ Social Links JSON string, backend ka parse gareyn doona
+            // ✅ Social Links JSON string
             formData.append("social", JSON.stringify(socialLinks));
 
             await axios.post("http://localhost:9000/create/famous", formData, {
@@ -38,11 +42,22 @@ const AddInfluencer = () => {
                     'Content-Type': 'multipart/form-data'
                 }
             });
+
+            // ✅ Toast success
+            toast.success("Famous person successfully added!", {
+                position: "top-right",
+                autoClose: 3000,
+            });
+
             navigate("/influencer");
-            alert("Famous person successfully added!");
         } catch (error) {
             console.error("Error adding famous person:", error);
-            alert("Failed to add famous person. Check console for details.");
+
+            // ❌ Toast error
+            toast.error("Failed to add famous person. Check console for details.", {
+                position: "top-right",
+                autoClose: 4000,
+            });
         }
     };
 
@@ -58,6 +73,7 @@ const AddInfluencer = () => {
                     <form
                         onSubmit={handleSubmit}
                         className="grid grid-cols-1 md:grid-cols-2 gap-6">
+
                         {/* Name */}
                         <div>
                             <label className="block text-gray-700 mb-1">Name</label>
@@ -182,9 +198,11 @@ const AddInfluencer = () => {
                     </form>
                 </div>
             </div>
-        </div>
 
+            {/* ✅ Toast Container */}
+            <ToastContainer />
+        </div>
     );
 }
 
-export default AddInfluencer
+export default AddInfluencer;

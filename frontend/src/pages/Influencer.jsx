@@ -3,10 +3,12 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Dashboard from "./Dashboard";
 
+// ✅ Toastify imports
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 function Influencer() {
   const [data, setData] = useState([])
-
-
 
   const handleReadData = () => {
     axios.get("http://localhost:9000/read/famous").then((res) => {
@@ -18,12 +20,21 @@ function Influencer() {
     handleReadData()
   }, [])
 
-  const handleDelete = (id) => [
+  const handleDelete = (id) => {
     axios.delete(`http://localhost:9000/delete/famous/${id}`).then(() => {
-      alert("succes delete")
+      toast.success("Successfully deleted!", {
+        position: "top-right",
+        autoClose: 2000,
+      })
       handleReadData()
+    }).catch(() => {
+      toast.error("Failed to delete!", {
+        position: "top-right",
+        autoClose: 3000,
+      })
     })
-  ]
+  }
+
   return (
     <div className='flex gap-32'>
       <Dashboard />
@@ -46,14 +57,14 @@ function Influencer() {
               </tr>
             </thead>
             {
-              data.map((items,index) => {
+              data.map((items, index) => {
                 return <tbody key={index}>
                   <tr className="border-b hover:bg-gray-100 transition">
                     <td className="py-3 px-4">{index + 1}</td>
                     <td className="py-3 px-4">
                       <img
                         src={`http://localhost:9000/allImages/${items.photo}`}
-                        alt="Iphone"
+                        alt="influencer"
                         className="w-12 h-12 object-cover rounded-md"
                       />  
                     </td>
@@ -64,25 +75,30 @@ function Influencer() {
                     <td className="py-3 px-4">{items.fullDescription}</td>
                     <td className="py-3 px-4">{items.category}</td>
                     <td className="py-3 px-4 flex gap-3">
-                      <Link to={`/updateinfluencer/${items._id }`}><button className="text-green-500 mt-2 text-xl">
-                        <i className="fa-solid fa-pen-to-square text-green-500 mt-2 text-xl"></i>
-                      </button></Link>
-                      <button className="">
-                        <i onClick={() => handleDelete(items._id)} className="fa-solid fa-trash text-red-500 mt-2 text-xl"></i>
+                      <Link to={`/updateinfluencer/${items._id}`}>
+                        <button className="text-green-500 mt-2 text-xl">
+                          <i className="fa-solid fa-pen-to-square text-green-500 mt-2 text-xl"></i>
+                        </button>
+                      </Link>
+                      <button>
+                        <i 
+                          onClick={() => handleDelete(items._id)} 
+                          className="fa-solid fa-trash text-red-500 mt-2 text-xl"
+                        ></i>
                       </button>
                     </td>
                   </tr>
-                  {/* Ku celi tr-ka items badan haddii loo baahdo */}
                 </tbody>
-
               })
             }
-
           </table>
         </div>
       </div>
-      </div>
-      );
+
+      {/* ✅ Toast container */}
+      <ToastContainer />
+    </div>
+  );
 }
 
 export default Influencer;
