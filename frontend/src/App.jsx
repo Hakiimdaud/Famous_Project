@@ -5,6 +5,10 @@ import AddInfluencer from "./pages/AddInfluencer";
 import Influencer from "./pages/Influencer";
 import EditInfluencer from "./pages/EditInfluencer";
 import Home from "./components/Home";
+import Contact from "./pages/contact";
+import GetContactData from "./pages/getcontactData";
+import Complaints from "./pages/complint";
+import GetComplaintsData from "./pages/getcomplaintsData";
 
 // Layout leh Header (Home ama pages kale)
 function MainLayout({ children }) {
@@ -28,7 +32,7 @@ function DashboardLayout({ children }) {
 
 function App() {
   return (
-    
+
     <Routes>
       <Route
         path="/"
@@ -77,6 +81,27 @@ function App() {
           </DashboardLayout>
         }
       />
+      <Route path="/contact" element={
+        <MainLayout>
+          <Contact />
+        </MainLayout>
+      } />
+      <Route path="/complaints" element={
+        <MainLayout>
+          <Complaints />
+        </MainLayout>
+      } />
+
+      <Route path="/getcontact" element={
+        <DashboardLayout>
+          <GetContactData />
+        </ DashboardLayout>
+      } />
+      <Route path="/getcomplaints" element={
+        <DashboardLayout>
+          <GetComplaintsData />
+        </ DashboardLayout>
+      } />
     </Routes>
   );
 }

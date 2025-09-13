@@ -4,6 +4,7 @@ require("dotenv").config()
 const cors = require("cors")
 const famousRouter = require("./Routers/famousRouter")
 const ComplaintsRouter = require("./Routers/ComplaintsRouter")
+const contactRouter = require("./Routers/ContactRouter")
 
 const app = express()
 const PORT = process.env.port || 9000
@@ -20,6 +21,7 @@ mongoose.connect(process.env.db_url)
 
 app.use(famousRouter)
 app.use(ComplaintsRouter)
+app.use(contactRouter)
 
 app.use("/allImages", express.static("document"))
 

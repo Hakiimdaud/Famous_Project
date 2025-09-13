@@ -38,22 +38,22 @@ function Influencer() {
   return (
     <div className='flex gap-32'>
       <Dashboard />
-      <div className="p-8 bg-gray-50 min-h-screen ml-64 w-full">
+      {/* <div className="p-8  min-h-screen ml-64 w-full"> */}
         <h2 className="text-3xl font-bold text-gray-800 mb-6">Influencer List</h2>
 
         <div className="overflow-x-auto">
           <table className="min-w-[700px] bg-white shadow-md rounded-lg overflow-hidden">
-            <thead className="bg-gray-200">
+            <thead className="bg-gradient-to-r from-purple-500 to-red-600">
               <tr>
-                <th className="py-3 px-4 text-left text-gray-600 font-semibold">#</th>
-                <th className="py-3 px-4 text-left text-gray-600 font-semibold">Image</th>
-                <th className="py-3 px-4 text-left text-gray-600 font-semibold">Influencer Name</th>
-                <th className="py-3 px-4 text-left text-gray-600 font-semibold">Address</th>
-                <th className="py-3 px-4 text-left text-gray-600 font-semibold">Email</th>
-                <th className="py-3 px-4 text-left text-gray-600 font-semibold">Description</th>
-                <th className="py-3 px-4 text-left text-gray-600 font-semibold">fullDescription</th>
-                <th className="py-3 px-4 text-left text-gray-600 font-semibold">Category</th>
-                <th className="py-3 px-4 text-left text-gray-600 font-semibold">Action</th>
+                <th className="py-3 px-4 text-left text-white font-semibold">#</th>
+                <th className="py-3 px-4 text-left text-white font-semibold">Image</th>
+                <th className="py-3 px-4 text-left text-white font-semibold">Influencer Name</th>
+                <th className="py-3 px-4 text-left text-white font-semibold">Address</th>
+                <th className="py-3 px-4 text-left text-white font-semibold">Email</th>
+                <th className="py-3 px-4 text-left text-white font-semibold">Description</th>
+                <th className="py-3 px-4 text-left text-white font-semibold">fullDescription</th>
+                <th className="py-3 px-4 text-left text-white font-semibold">Category</th>
+                <th className="py-3 px-4 text-left text-white font-semibold">Action</th>
               </tr>
             </thead>
             {
@@ -93,7 +93,7 @@ function Influencer() {
             }
           </table>
         </div>
-      </div>
+      {/* </div> */}
 
       {/* ✅ Toast container */}
       <ToastContainer />

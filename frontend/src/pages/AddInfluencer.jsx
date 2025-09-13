@@ -190,7 +190,7 @@ const AddInfluencer = () => {
                         <div className="md:col-span-2 flex justify-center">
                             <button
                                 type='submit'
-                                className="bg-blue-600 text-white w-full text-3xl py-2 rounded-xl shadow hover:bg-blue-700 transition"
+                                className="bg-gradient-to-r from-purple-500 to-red-600 text-white w-full text-3xl py-2 rounded-xl shadow hover:bg-blue-700 transition"
                             >
                                 Submit
                             </button>
