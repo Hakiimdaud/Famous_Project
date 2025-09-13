@@ -9,6 +9,8 @@ import Contact from "./pages/contact";
 import GetContactData from "./pages/getcontactData";
 import Complaints from "./pages/complint";
 import GetComplaintsData from "./pages/getcomplaintsData";
+import Register from "./pages/Register";
+import Login from "./pages/Login";
 
 // Layout leh Header (Home ama pages kale)
 function MainLayout({ children }) {
@@ -39,6 +41,23 @@ function App() {
         element={
           <MainLayout>
             <Home />
+          </MainLayout>
+        }
+      />
+
+      <Route
+        path="/register"
+        element={
+          <MainLayout>
+            <Register />
+          </MainLayout>
+        }
+      />
+      <Route
+        path="/login"
+        element={
+          <MainLayout>
+            <Login />
           </MainLayout>
         }
       />

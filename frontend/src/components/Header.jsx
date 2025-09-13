@@ -1,8 +1,16 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function Header() {
   const [isOpen, setIsOpen] = useState(false);
+
+  const getItem = localStorage.getItem("customer")
+
+  const navigate = useNavigate()
+  const logOut = () => {
+    localStorage.clear()
+    navigate("/")
+  }
 
   return (
     <header className="w-full bg-white shadow-md px-6 py-4 flex items-center justify-between relative">
@@ -19,20 +27,35 @@ function Header() {
       </nav>
 
       {/* Auth + Buttons (desktop) */}
-      <div className="hidden md:flex gap-4 items-center">
-        <button className="text-gray-600 font-semibold border-2 border-black px-6 py-1 rounded-md">
-          Login
-        </button>
-        <button className="text-gray-600 font-semibold border-2 border-black px-6 py-1 rounded-md">
-          Register
-        </button>
-        <Link to={"/"}>
-          <button className="bg-red-500 px-4 py-2 rounded-lg text-white">
-            Payment
-          </button>
-        </Link>
-      </div>
-
+      {
+        getItem ?
+          <div className="hidden md:flex gap-4 items-center">
+            <div className="w-10 h-10  bg-red-500 rounded-full flex items-center justify-center text-white text-3xl text-center">
+            <h1>{JSON.parse(getItem).data?.customer.name[0]}</h1>
+            </div>
+            <button onClick={logOut} className="text-gray-600 font-semibold border-2 border-black px-6 py-1 rounded-md">
+              Logout
+            </button>
+          </div>
+          :
+          <div className="hidden md:flex gap-4 items-center">
+            <Link to="/login">
+              <button className="text-gray-600 font-semibold border-2 border-black px-6 py-1 rounded-md">
+                Login
+              </button>
+            </Link>
+            <Link to="/register">
+              <button className="text-gray-600 font-semibold border-2 border-black px-6 py-1 rounded-md">
+                Register
+              </button>
+            </Link>
+            <Link to={"/"}>
+              <button className="bg-red-500 px-4 py-2 rounded-lg text-white">
+                Payment
+              </button>
+            </Link>
+          </div>
+      }
       {/* Mobile Menu Icon */}
       <div className="md:hidden flex items-center">
         <i
@@ -42,47 +65,49 @@ function Header() {
       </div>
 
       {/* Mobile Menu */}
-      {isOpen && (
-        <div className="absolute top-16 left-0 w-full bg-white shadow-lg flex flex-col items-center gap-6 py-6 md:hidden z-50">
-          <Link
-            className="font-bold text-lg text-black"
-            to="/"
-            onClick={() => setIsOpen(false)}
-          >
-            Home
-          </Link>
-          <Link
-            className="font-bold text-lg text-black"
-            to="/"
-            onClick={() => setIsOpen(false)}
-          >
-            Complaints
-          </Link>
-          <Link
-            className="font-bold text-lg text-black"
-            to="/"
-            onClick={() => setIsOpen(false)}
-          >
-            Contact
-          </Link>
-
-          {/* Auth + Buttons */}
-          <div className="flex flex-col gap-4 w-full px-6">
-            <button className="text-gray-600 font-semibold border-2 border-black px-6 py-2 rounded-md">
-              Login
-            </button>
-            <button className="text-gray-600 font-semibold border-2 border-black px-6 py-2 rounded-md">
-              Register
-            </button>
-            <Link to={"/"}>
-              <button className="bg-red-500 px-4 py-2 rounded-lg text-white w-full">
-                Payment
-              </button>
+      {
+        isOpen && (
+          <div className="absolute top-16 left-0 w-full bg-white shadow-lg flex flex-col items-center gap-6 py-6 md:hidden z-50">
+            <Link
+              className="font-bold text-lg text-black"
+              to="/"
+              onClick={() => setIsOpen(false)}
+            >
+              Home
             </Link>
+            <Link
+              className="font-bold text-lg text-black"
+              to="/"
+              onClick={() => setIsOpen(false)}
+            >
+              Complaints
+            </Link>
+            <Link
+              className="font-bold text-lg text-black"
+              to="/"
+              onClick={() => setIsOpen(false)}
+            >
+              Contact
+            </Link>
+
+            {/* Auth + Buttons */}
+            <div className="flex flex-col gap-4 w-full px-6">
+              <button className="text-gray-600 font-semibold border-2 border-black px-6 py-2 rounded-md">
+                Login
+              </button>
+              <button className="text-gray-600 font-semibold border-2 border-black px-6 py-2 rounded-md">
+                Register
+              </button>
+              <Link to={"/"}>
+                <button className="bg-red-500 px-4 py-2 rounded-lg text-white w-full">
+                  Payment
+                </button>
+              </Link>
+            </div>
           </div>
-        </div>
-      )}
-    </header>
+        )
+      }
+    </header >
   );
 }
 
