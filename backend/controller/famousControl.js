@@ -3,7 +3,7 @@ const famousModel = require("../Models/famousModel");
 // Create famous
 const createFamous = async (req, res) => {
   try {
-    let { name, address, email, phone, description, fullDescription, category, social } = req.body;
+    let { name, address, email, phone, description, fullDescription, category, price, status, social } = req.body;
 
     // Parse social if it's a string
     if (typeof social === "string") {
@@ -24,6 +24,8 @@ const createFamous = async (req, res) => {
       description,
       fullDescription,
       category,
+      price: price || 0,
+      status: status || "online",
       social,
       photo: req.file ? req.file.filename : null
     });
@@ -61,7 +63,7 @@ const readSinglefamous = async (req, res) => {
 // Update famous
 const updateFamous = async (req, res) => {
   try {
-    let { name, address, email, phone, description, fullDescription, category, social } = req.body;
+    let { name, address, email, phone, description, fullDescription, category, price, status, social } = req.body;
 
     if (typeof social === "string") {
       social = JSON.parse(social);
@@ -78,6 +80,8 @@ const updateFamous = async (req, res) => {
           description,
           fullDescription,
           category,
+          price,
+          status,
           social,
           ...(req.file && { photo: req.file.filename })
         }

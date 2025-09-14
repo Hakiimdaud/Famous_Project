@@ -13,7 +13,6 @@ import Register from "./pages/Register";
 import Login from "./pages/Login";
 import ViewFamous from "./pages/ViewFamous";
 import InfluencersPage from "./pages/InfluencersPage";
-import ProteRouter from "./pages/ProtectedRouter";
 import ProtectedRouter from "./pages/ProtectedRouter";
 import Profile from "./pages/Profile";
 import NotFound from "./pages/NotFound ";

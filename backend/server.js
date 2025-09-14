@@ -7,6 +7,7 @@ const ComplaintsRouter = require("./Routers/ComplaintsRouter")
 const contactRouter = require("./Routers/ContactRouter")
 const customerRouter = require("./Routers/customerRoute")
 const adminRouter = require("./Routers/adminRoute")
+const ratingRouter = require("./Routers/ratingRouter")
 
 const app = express()
 const PORT = process.env.port || 9000
@@ -26,6 +27,7 @@ app.use(ComplaintsRouter)
 app.use(contactRouter)
 app.use(customerRouter)
 app.use(adminRouter)
+app.use(ratingRouter)
 
 app.use("/allImages", express.static("document"))
 
