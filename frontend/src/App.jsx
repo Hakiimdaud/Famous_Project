@@ -17,6 +17,7 @@ import ProteRouter from "./pages/ProtectedRouter";
 import ProtectedRouter from "./pages/ProtectedRouter";
 import Profile from "./pages/Profile";
 import NotFound from "./pages/NotFound ";
+import ProfileDashboard from "./pages/ProfileDashboard";
 
 // Layout leh Header (Home ama pages kale)
 function MainLayout({ children }) {
@@ -96,11 +97,11 @@ function App() {
         path="/dashboard"
         element={
           <ProtectedRouter>
-          <DashboardLayout>
-            <h1 className="text-3xl font-bold text-gray-800 ml-[40%]">
-              Welcome to Dashboard
-            </h1>
-          </DashboardLayout>
+            <DashboardLayout>
+              <h1 className="text-3xl font-bold text-gray-800 ml-[40%]">
+                Welcome to Dashboard
+              </h1>
+            </DashboardLayout>
           </ProtectedRouter>
         }
       />
@@ -111,9 +112,20 @@ function App() {
         element={
           <ProtectedRouter>
 
-          <DashboardLayout>
-            <AddInfluencer />
-          </DashboardLayout>
+            <DashboardLayout>
+              <AddInfluencer />
+            </DashboardLayout>
+          </ProtectedRouter>
+        }
+      />
+      <Route
+        path="/ProfileDashboard/:id"
+        element={
+          <ProtectedRouter>
+
+            <DashboardLayout>
+              <ProfileDashboard />
+            </DashboardLayout>
           </ProtectedRouter>
         }
       />
@@ -123,9 +135,9 @@ function App() {
         element={
           <ProtectedRouter>
 
-          <DashboardLayout>
-            <Influencer />
-          </DashboardLayout>
+            <DashboardLayout>
+              <Influencer />
+            </DashboardLayout>
           </ProtectedRouter>
         }
       />
@@ -135,9 +147,9 @@ function App() {
         element={
           <ProtectedRouter>
 
-          <DashboardLayout>
-            <EditInfluencer />
-          </DashboardLayout>
+            <DashboardLayout>
+              <EditInfluencer />
+            </DashboardLayout>
           </ProtectedRouter>
         }
       />
@@ -155,21 +167,20 @@ function App() {
       <Route path="/getcontact" element={
         <ProtectedRouter>
 
-        <DashboardLayout>
-          <GetContactData />
-        </ DashboardLayout>
+          <DashboardLayout>
+            <GetContactData />
+          </ DashboardLayout>
         </ProtectedRouter>
       } />
       <Route path="/getcomplaints" element={
         <ProcessingInstruction>
-
-        <DashboardLayout>
-          <GetComplaintsData />
-        </ DashboardLayout>
+          <DashboardLayout>
+            <GetComplaintsData />
+          </ DashboardLayout>
         </ProcessingInstruction>
       } />
 
-        <Route path="*" element={<NotFound />} />
+      <Route path="*" element={<NotFound />} />
     </Routes>
   );
 }
