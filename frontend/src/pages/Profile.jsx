@@ -73,7 +73,7 @@ const Profile = () => {
   if (!user) return <p className="text-center mt-10">Loading...</p>;
 
   return (
-    <div className="max-w-md mx-auto mt-10 bg-white shadow-md rounded-lg overflow-hidden">
+    <div className="max-w-md mx-auto my-10 bg-white shadow-md rounded-lg overflow-hidden">
       {/* Top Section with Profile Image */}
       <div className="bg-red-500 h-40 w-full relative">
         <img
