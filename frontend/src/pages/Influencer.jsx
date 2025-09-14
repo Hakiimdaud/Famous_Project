@@ -42,7 +42,7 @@ function Influencer() {
         <h2 className="text-3xl font-bold text-gray-800 mb-6">Influencer List</h2>
 
         <div className="overflow-x-auto">
-          <table className="min-w-[700px] bg-white shadow-md rounded-lg overflow-hidden">
+          <table className="min-w-[950px] bg-white shadow-md rounded-lg overflow-hidden">
             <thead className="bg-gradient-to-r from-purple-500 to-red-600">
               <tr>
                 <th className="py-3 px-4 text-left text-white font-semibold">#</th>

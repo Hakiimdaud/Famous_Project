@@ -13,6 +13,8 @@ import Register from "./pages/Register";
 import Login from "./pages/Login";
 import ViewFamous from "./pages/ViewFamous";
 import InfluencersPage from "./pages/InfluencersPage";
+import ProteRouter from "./pages/ProtectedRouter";
+import ProtectedRouter from "./pages/ProtectedRouter";
 
 // Layout leh Header (Home ama pages kale)
 function MainLayout({ children }) {
@@ -83,11 +85,13 @@ function App() {
       <Route
         path="/dashboard"
         element={
+          <ProtectedRouter>
           <DashboardLayout>
             <h1 className="text-3xl font-bold text-gray-800 ml-[40%]">
               Welcome to Dashboard
             </h1>
           </DashboardLayout>
+          </ProtectedRouter>
         }
       />
 
@@ -95,27 +99,36 @@ function App() {
       <Route
         path="/addinfluencer"
         element={
+          <ProtectedRouter>
+
           <DashboardLayout>
             <AddInfluencer />
           </DashboardLayout>
+          </ProtectedRouter>
         }
       />
 
       <Route
         path="/influencer"
         element={
+          <ProtectedRouter>
+
           <DashboardLayout>
             <Influencer />
           </DashboardLayout>
+          </ProtectedRouter>
         }
       />
 
       <Route
         path="/updateinfluencer/:id"
         element={
+          <ProtectedRouter>
+
           <DashboardLayout>
             <EditInfluencer />
           </DashboardLayout>
+          </ProtectedRouter>
         }
       />
       <Route path="/contact" element={
@@ -130,14 +143,20 @@ function App() {
       } />
 
       <Route path="/getcontact" element={
+        <ProtectedRouter>
+
         <DashboardLayout>
           <GetContactData />
         </ DashboardLayout>
+        </ProtectedRouter>
       } />
       <Route path="/getcomplaints" element={
+        <ProcessingInstruction>
+
         <DashboardLayout>
           <GetComplaintsData />
         </ DashboardLayout>
+        </ProcessingInstruction>
       } />
     </Routes>
   );

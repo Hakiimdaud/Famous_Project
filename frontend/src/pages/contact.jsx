@@ -61,7 +61,7 @@ function Contact() {
                     and I’ll get back to you as soon as possible</p>
             </div>
 
-            <div className="flex justify-center items-center h-screen ml-[4%] -mt-28">
+            <div className="flex justify-center items-center h-screen ml-[4%] -mt-22">
                 <div className="bg-gradient-to-r from-purple-500 to-red-600 w-[60%] rounded-2xl p-10 grid grid-cols-2 gap-6">
                     <input value={name} onChange={(e) => setName(e.target.value)} className="w-full h-12 rounded-lg text-lg pl-3" type="text" placeholder="Enter Name" />
                     <input value={email} onChange={(e) => setEmail(e.target.value)} className="w-full h-12 rounded-lg text-lg pl-3" type="email" placeholder="Enter Email" />
