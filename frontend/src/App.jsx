@@ -16,6 +16,7 @@ import InfluencersPage from "./pages/InfluencersPage";
 import ProteRouter from "./pages/ProtectedRouter";
 import ProtectedRouter from "./pages/ProtectedRouter";
 import Profile from "./pages/Profile";
+import NotFound from "./pages/NotFound ";
 
 // Layout leh Header (Home ama pages kale)
 function MainLayout({ children }) {
@@ -167,6 +168,8 @@ function App() {
         </ DashboardLayout>
         </ProcessingInstruction>
       } />
+
+        <Route path="*" element={<NotFound />} />
     </Routes>
   );
 }
