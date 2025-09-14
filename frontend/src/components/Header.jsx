@@ -1,16 +1,12 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function Header() {
   const [isOpen, setIsOpen] = useState(false);
 
   const getItem = localStorage.getItem("customer")
 
-  const navigate = useNavigate()
-  const logOut = () => {
-    localStorage.clear()
-    navigate("/")
-  }
+ 
 
   return (
     <header className="w-full bg-white shadow-md px-6 py-4 flex items-center justify-between relative">
@@ -31,12 +27,16 @@ function Header() {
       {
         getItem ?
           <div className="hidden md:flex gap-4 items-center">
-            <div className="w-10 h-10  bg-red-500 rounded-full flex items-center justify-center text-white text-3xl text-center">
-            <h1>{JSON.parse(getItem).data?.customer.name[0]}</h1>
+            <div className="w-10 h-10 bg-red-500 rounded-full overflow-hidden flex items-center justify-center">
+              <Link to={`/profile/${JSON.parse(getItem).data?.customer._id}`}>
+                <img
+                  src={`http://localhost:9000/allImages/${JSON.parse(getItem).data?.customer.image}`}
+                  alt="Profile"
+                  className="w-full h-full object-cover"
+                />
+              </Link>
             </div>
-            <button onClick={logOut} className="text-gray-600 font-semibold border-2 border-black px-6 py-1 rounded-md">
-              Logout
-            </button>
+          
           </div>
           :
           <div className="hidden md:flex gap-4 items-center">

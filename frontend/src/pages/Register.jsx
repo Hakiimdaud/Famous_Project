@@ -6,24 +6,53 @@ const Register = () => {
     const [phone, setPhone] = useState("")
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
+    const [image, setImage] = useState(null)
 
     const [active, setActive] = useState("customer")
 
     const navigate = useNavigate()
 
+    // const handleRegister = () => {
+    //     const url = active === "customer" ? "http://localhost:9000/create/customer" : "http://localhost:9000/create/admin";
+
+    //     const playload = active === "customer" ? { name: name, phone: phone, email: email, password: password, img: image } : { name: name, email: email, password: password, img: image };
+
+    //     axios.post(url, playload).then(() => {
+    //         alert("thanks you're welcome")
+    //         navigate("/login")
+    //     }).catch((error) => {
+    //         console.log(error);
+
+    //     })
+    // }
+
     const handleRegister = () => {
-        const url = active === "customer" ? "http://localhost:9000/create/customer" : "http://localhost:9000/create/admin";
+        const url = active === "customer"
+            ? "http://localhost:9000/create/customer"
+            : "http://localhost:9000/create/admin";
 
-        const playload = active === "customer" ? { name: name, phone: phone, email: email, password: password } : { name: name, email: email, password: password };
+        const formData = new FormData();
+        formData.append("name", name);
+        formData.append("email", email);
+        formData.append("password", password);
+        formData.append("img", image); // sawirka
 
-        axios.post(url, playload).then(() => {
-            alert("thanks you're welcome")
-            navigate("/login")
+        if (active === "customer") {
+            formData.append("phone", phone);
+        }
+
+        axios.post(url, formData, {
+            headers: {
+                "Content-Type": "multipart/form-data"
+            }
+        }).then(() => {
+            alert("thanks you're welcome");
+            navigate("/login");
         }).catch((error) => {
             console.log(error);
+        });
+    };
 
-        })
-    }
 
 
 
@@ -80,6 +109,15 @@ const Register = () => {
                         placeholder="Enter your password"
                         className="w-full border rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
                     />
+                </div>
+                <div className="mb-6">
+                    <label className="block text-gray-700 font-semibold mb-2">Profile Picture</label>
+                    <input
+                        type="file"
+                        onChange={(e) => setImage(e.target.files[0])}
+                        className="w-full border rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
+                    />
+
                 </div>
 
                 <button

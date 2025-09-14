@@ -15,6 +15,7 @@ import ViewFamous from "./pages/ViewFamous";
 import InfluencersPage from "./pages/InfluencersPage";
 import ProteRouter from "./pages/ProtectedRouter";
 import ProtectedRouter from "./pages/ProtectedRouter";
+import Profile from "./pages/Profile";
 
 // Layout leh Header (Home ama pages kale)
 function MainLayout({ children }) {
@@ -62,6 +63,14 @@ function App() {
         element={
           <MainLayout>
             <Login />
+          </MainLayout>
+        }
+      />
+      <Route
+        path="/Profile/:id"
+        element={
+          <MainLayout>
+            <Profile />
           </MainLayout>
         }
       />

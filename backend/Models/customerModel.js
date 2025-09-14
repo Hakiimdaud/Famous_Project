@@ -3,20 +3,24 @@ const mongoose = require("mongoose")
 const CustomerScheme = mongoose.Schema({
     name: {
         type: String,
-        required:true
+        required: true
     },
-    phone:{
+    phone: {
         type: Number,
-        required:true
+        required: true
     },
-    email:{
+    email: {
         type: String,
-        required:true,
+        required: true,
         unique: true
     },
-    password:{
+    password: {
         type: String,
-        required:true
+        required: true
+    },
+    image: {
+        type: String,
+        required: true
     }
 })
 
