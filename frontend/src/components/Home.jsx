@@ -1,21 +1,25 @@
-// import img1 from "../src/images/dyx.jpg"
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 export default function HomePage() {
+  const [topInfluencers, setTopInfluencers] = useState([]);
 
-  const [getdata, setGetdata] = useState([]);
-
-  const handlegetData  = () => {
-    axios.get("http://localhost:9000/read/famous")
+  const handlegetData = () => {
+    axios
+      .get("http://localhost:9000/read/famous")
       .then((response) => {
-        setGetdata(response.data);
+        const data = response.data;
+        // Sort by averageRating descending
+        const sorted = data.sort((a, b) => b.averageRating - a.averageRating);
+        // Take top 3
+        const top3 = sorted.slice(0, 3);
+        setTopInfluencers(top3);
       })
       .catch((error) => {
         console.error("Error fetching data:", error);
       });
-  }
+  };
 
   useEffect(() => {
     handlegetData();
@@ -36,30 +40,68 @@ export default function HomePage() {
         </button>
       </section>
 
-      {/* Celebrities Showcase Section */}
+      {/* Top Influencers Section */}
       <section className="py-16 px-6">
-        <h2 className="text-3xl font-bold text-center mb-10">Featured Celebrities</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
-                {getdata.map((item,index) => (
-            <div
-              key={index}
-              className="bg-gray-50 rounded-2xl shadow-md hover:shadow-lg transition p-4 text-center"
-            >
-              <img
-                src={`http://localhost:9000/allImages/${item.photo}`}
-                alt={`Celebrity ${item.id}`}
-                className="w-full h-48 object-cover rounded-xl mb-4"
-              />
-              <h3 className="text-xl font-semibold mb-2">{item.name}</h3>
-              <p className="text-gray-600 mb-3">{item.description}</p>
-              <p className="text-gray-600 mb-3">{item.category}</p>
-              <Link to={`/viewfamous/${item._id}`}>
-              <button className="bg-red-500 text-white w-full text-2xl py-2 rounded-xl hover:bg-red-700">
-                view Details
-              </button>
-              </Link>
+        <h2 className="text-3xl font-bold text-center mb-10">Top Influencers</h2>
+        <div className="grid grid-cols-1 justify-center md:grid-cols-3 gap-8">
+          {topInfluencers.map((item) => (
+            <div key={item._id} className="bg-white rounded-2xl shadow-md overflow-hidden flex flex-col">
+              <div className="relative">
+                <img
+                  src={`http://localhost:9000/allImages/${item.photo}`}
+                  alt={item.name}
+                  className="w-full h-60 object-cover"
+                />
+                <div className="absolute top-4 right-4">
+                  <span
+                    className={`px-3 py-1 rounded-full text-xs font-semibold ${
+                      item.status === "online"
+                        ? "bg-green-100 text-green-800"
+                        : "bg-gray-100 text-gray-800"
+                    }`}
+                  >
+                    {item.status === "online" ? "Available" : "Offline"}
+                  </span>
+                </div>
+              </div>
+
+              <div className="p-5 flex-grow">
+                <div className="flex justify-between items-start mb-3">
+                  <h3 className="text-xl font-bold text-gray-800">{item.name}</h3>
+                  <span className="bg-red-100 text-red-700 text-xs font-medium px-2.5 py-0.5 rounded-full">
+                    {item.category}
+                  </span>
+                </div>
+
+                <div className="flex items-center mb-3">
+                  <div className="flex mr-2">
+                    {Array.from({ length: 5 }, (_, i) => (
+                      <svg
+                        key={i}
+                        className={`w-4 h-4 ${i < item.averageRating ? "text-yellow-400" : "text-gray-300"}`}
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                      >
+                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                      </svg>
+                    ))}
+                  </div>
+                  <span className="text-sm text-gray-600">
+                    {item.averageRating ? item.averageRating.toFixed(1) : "No ratings"} ({item.totalRatings || 0} reviews)
+                  </span>
+                </div>
+
+                <Link to={`/viewfamous/${item._id}`}>
+                  <button className="w-full bg-gradient-to-r from-red-600 to-red-700 text-white py-2.5 rounded-xl hover:from-red-700 hover:to-red-800 transition-all duration-300 font-medium flex items-center justify-center">
+                    View Details
+                  </button>
+                </Link>
+              </div>
             </div>
           ))}
+        </div>
+        <div className="flex justify-center mt-5">
+          <button className="bg-[#E5AC07] text-white px-10 py-3 rounded-lg">Learn More</button>
         </div>
       </section>
 
