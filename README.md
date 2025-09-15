@@ -1,5 +1,5 @@
 
-# Famous Project Documentation
+# Tekra Connect Project Documentation
 
 Welcome! This file explains everything about the Famous Project in simple English. You will find what the project does, how it is built, how to use it, and all the backend API endpoints.
 
