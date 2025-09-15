@@ -48,7 +48,7 @@ const ProfileDashboard = () => {
     <>
       {/* Main Profile Card */}
       <motion.div
-        className="flex justify-center items-center min-h-screen bg-gray-50"
+        className="flex justify-center items-center min-h-screen "
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}

@@ -42,7 +42,7 @@ export default function Footer() {
           <div className="flex space-x-6">
             <a href="#" className="hover:text-gray-200 transition">Facebook</a>
             <a href="#" className="hover:text-gray-200 transition">Twitter</a>
-            <a href="#" className="hover:text-gray-200 transition">Instagram</a>
+            <a href="https://www.instagram.com/tekraconnect/" target="_blank" className="hover:text-gray-200 transition">Instagram</a>
           </div>
         </div>
       </div>
