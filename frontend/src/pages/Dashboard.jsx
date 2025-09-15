@@ -1,9 +1,6 @@
-import { useState } from "react";
 import { Link } from "react-router-dom";
 
 function Dashboard() {
-  const [isOpen, setIsOpen] = useState(false);
-
   const customer = localStorage.getItem("customer");
   const admin = localStorage.getItem("admin");
 
@@ -16,51 +13,36 @@ function Dashboard() {
 
   return (
     <>
-      {/* Mobile Topbar */}
-      <div className="md:hidden flex justify-between items-center bg-gradient-to-r from-purple-900 to-red-600 text-white p-4 fixed">
-        <h2 className="text-xl font-bold">Dashboard</h2>
-        <button
-          onClick={() => setIsOpen(!isOpen)}
-          className="focus:outline-none text-2xl"
-        >
-          <i className="fas fa-bars"></i>
-        </button>
-      </div>
-
-      {/* Sidebar */}
-      <div
-        className={`fixed top-0 left-0 h-full w-64 bg-gradient-to-r from-purple-900 to-red-600 text-white shadow-md transform ${
-          isOpen ? "translate-x-0" : "-translate-x-full"
-        } transition-transform duration-300 ease-in-out md:translate-x-0 md:relative md:flex md:flex-col justify-between`}
-      >
+      {/* Sidebar (always visible, no responsive) */}
+      <div className="fixed top-0 left-0 h-full w-64 bg-gradient-to-r from-purple-900 to-red-600 text-white shadow-md flex flex-col justify-between">
         {/* Menu Items */}
         <ul className="flex flex-col gap-8 mt-6 text-[18px] px-4">
-          <Link to="/" onClick={() => setIsOpen(false)}>
+          <Link to="/">
             <li className="p-2 rounded-md hover:bg-black cursor-pointer flex items-center gap-2">
               <i className="fas fa-home"></i> Home
             </li>
           </Link>
-          <Link to="/getDashboardStats" onClick={() => setIsOpen(false)}>
+          <Link to="/getDashboardStats">
             <li className="p-2 rounded-md hover:bg-black cursor-pointer flex items-center gap-2">
               <i className="fas fa-tachometer-alt"></i> Dashboard
             </li>
           </Link>
-          <Link to="/influencer" onClick={() => setIsOpen(false)}>
+          <Link to="/influencer">
             <li className="p-2 rounded-md hover:bg-black cursor-pointer flex items-center gap-2">
               <i className="fas fa-user-friends"></i> Influencer
             </li>
           </Link>
-          <Link to="/Addinfluencer" onClick={() => setIsOpen(false)}>
+          <Link to="/Addinfluencer">
             <li className="p-2 rounded-md hover:bg-black cursor-pointer flex items-center gap-2">
               <i className="fas fa-user-plus"></i> Add Influencer
             </li>
           </Link>
-          <Link to="/getcomplaints" onClick={() => setIsOpen(false)}>
+          <Link to="/getcomplaints">
             <li className="p-2 rounded-md hover:bg-black cursor-pointer flex items-center gap-2">
               <i className="fas fa-exclamation-circle"></i> Complaints
             </li>
           </Link>
-          <Link to="/getcontact" onClick={() => setIsOpen(false)}>
+          <Link to="/getcontact">
             <li className="p-2 rounded-md hover:bg-black cursor-pointer flex items-center gap-2">
               <i className="fas fa-chart-line"></i> Reports
             </li>
