@@ -64,8 +64,8 @@ const AddInfluencer = () => {
     return (
         <div className='flex gap-32'>
             <Dashboard />
-            <div className="min-h-screen bg-gray-100 flex items-center justify-center p-6 ml-40 w-full">
-                <div className="bg-white shadow-lg rounded-2xl p-8 w-[800px] max-w-3xl">
+            <div className="min-h-screen flex items-center justify-center p-6 ml-40 w-full">
+                <div className="bg-white shadow-lg rounded-2xl p-8 w-[800px] max-w-3xl ml-[10%]">
                     <h1 className="text-2xl font-bold text-center mb-6 text-gray-800">
                         Add Famous Person
                     </h1>

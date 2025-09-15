@@ -61,9 +61,9 @@ const deleteComplaintById = async (req, res) => {
 };
 
 module.exports = {
-    createComplaint,
-    getAllComplaints,
-    getComplaintById,
-    updateComplaintById,
-    deleteComplaintById
+createComplaint,
+getAllComplaints,
+getComplaintById,
+updateComplaintById,
+deleteComplaintById
 };

@@ -18,6 +18,7 @@ import ProtectedRouter from "./pages/ProtectedRouter";
 import Profile from "./pages/Profile";
 import NotFound from "./pages/NotFound ";
 import ProfileDashboard from "./pages/ProfileDashboard";
+import Footer from "./components/Footer";
 
 // Layout leh Header (Home ama pages kale)
 function MainLayout({ children }) {
@@ -25,6 +26,7 @@ function MainLayout({ children }) {
     <div>
       <Header />
       <div className="">{children}</div>
+      <Footer />
     </div>
   );
 }
@@ -173,11 +175,11 @@ function App() {
         </ProtectedRouter>
       } />
       <Route path="/getcomplaints" element={
-        <ProcessingInstruction>
+        <ProtectedRouter>
           <DashboardLayout>
             <GetComplaintsData />
           </ DashboardLayout>
-        </ProcessingInstruction>
+        </ProtectedRouter>
       } />
 
       <Route path="*" element={<NotFound />} />
