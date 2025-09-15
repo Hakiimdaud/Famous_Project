@@ -20,6 +20,7 @@ import ProfileDashboard from "./pages/ProfileDashboard";
 import Footer from "./components/Footer";
 import GetDashboardStats from "./pages/getDashboardStats";
 import AboutUs from "./pages/AboutUs";
+import ChatBox from "./pages/Chatting";
 // Layout leh Header (Home ama pages kale)
 function MainLayout({ children }) {
   return (
@@ -198,6 +199,9 @@ function App() {
           </ DashboardLayout>
         </ProtectedRouter>
       } />
+      
+      
+ 
 
       <Route path="*" element={<NotFound />} />
     </Routes>

@@ -1,40 +1,38 @@
 const Famous = require("../Models/famousModel");
 
-// Add a rating to an influencer
+// Add Rating
 const addRating = async (req, res) => {
     try {
-        const { influencerId, rating, comment, userName } = req.body;
-        
-        // Create a unique guest ID
-        const userId = "guest_" + Date.now();
+        const { influencerId, rating, comment, userName, userId } = req.body;
 
-        // Validate input
-        if (!influencerId || !rating) {
-            return res.status(400).json({ message: "Influencer ID and rating are required" });
+        if (!influencerId || !rating || !userId) {
+            return res.status(400).json({ message: "Influencer ID, rating, and userId are required" });
         }
 
         if (rating < 1 || rating > 5) {
             return res.status(400).json({ message: "Rating must be between 1 and 5" });
         }
 
-        // Find the influencer
         const influencer = await Famous.findById(influencerId);
         if (!influencer) {
             return res.status(404).json({ message: "Influencer not found" });
         }
 
-        // Add new rating
+        // Check if user already rated
+        const alreadyRated = influencer.ratings.find(r => r.userId === userId);
+        if (alreadyRated) {
+            return res.status(400).json({ message: "You already submitted a rating for this influencer" });
+        }
+
+        // Push new rating
         influencer.ratings.push({
-            userId: userId,
+            userId,
             userName: userName || "Anonymous",
             rating,
             comment: comment || ""
         });
 
-        // Calculate new average rating
         influencer.calculateAverageRating();
-
-        // Save the influencer
         await influencer.save();
 
         res.status(200).json({
@@ -48,21 +46,15 @@ const addRating = async (req, res) => {
     }
 };
 
-// Get ratings for an influencer
+// Get Ratings
 const getRatings = async (req, res) => {
     try {
         const { influencerId } = req.params;
-
-        const influencer = await Famous.findById(influencerId).select('ratings averageRating totalRatings');
+        const influencer = await Famous.findById(influencerId).select("ratings averageRating totalRatings");
         if (!influencer) {
             return res.status(404).json({ message: "Influencer not found" });
         }
-
-        res.status(200).json({
-            ratings: influencer.ratings,
-            averageRating: influencer.averageRating,
-            totalRatings: influencer.totalRatings
-        });
+        res.status(200).json(influencer);
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
