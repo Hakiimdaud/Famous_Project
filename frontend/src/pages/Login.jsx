@@ -15,7 +15,7 @@ const Login = () => {
         axios.post(url, playload).then((res) => {
             alert("thanks you're welcome")
             localStorage.setItem(active === "customer" ? "customer" : "admin", JSON.stringify(res))
-            navigate( active === "customer" ? "/" : "/dashboard");
+            navigate( active === "customer" ? "/" : "/getDashboardStats");
         }).catch((error) => {
             alert("email or password are incorrect")
         })

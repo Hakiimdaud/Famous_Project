@@ -50,7 +50,7 @@ function Header() {
         <Link className="font-bold text-lg text-black hover:text-red-500 transition" to="/complaints">Complaints</Link>
         <Link className="font-bold text-lg text-black hover:text-red-500 transition" to="/contact">Contact</Link>
         {loggedInUser && loggedInUser.type === "admin" && (
-          <Link className="font-bold text-lg text-black hover:text-red-500 transition" to="/dashboard">Admin Dashboard</Link>
+          <Link className="font-bold text-lg text-black hover:text-red-500 transition" to="/getDashboardStats">Admin Dashboard</Link>
         )}
       </motion.nav>
 
@@ -119,7 +119,7 @@ function Header() {
         <Link className="font-semibold text-lg hover:text-red-500 transition" to="/complaints" onClick={() => setIsOpen(false)}>Complaints</Link>
         <Link className="font-semibold text-lg hover:text-red-500 transition" to="/contact" onClick={() => setIsOpen(false)}>Contact</Link>
         {loggedInUser && loggedInUser.type === "admin" && (
-          <Link className="font-semibold text-lg hover:text-red-500 transition" to="/dashboard" onClick={() => setIsOpen(false)}>Admin Dashboard</Link>
+          <Link className="font-semibold text-lg hover:text-red-500 transition" to="/getDashboardStats" onClick={() => setIsOpen(false)}>Admin Dashboard</Link>
         )}
 
         {loggedInUser ? (

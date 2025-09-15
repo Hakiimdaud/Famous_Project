@@ -18,6 +18,7 @@ import Profile from "./pages/Profile";
 import NotFound from "./pages/NotFound ";
 import ProfileDashboard from "./pages/ProfileDashboard";
 import Footer from "./components/Footer";
+import GetDashboardStats from "./pages/getDashboardStats";
 
 // Layout leh Header (Home ama pages kale)
 function MainLayout({ children }) {
@@ -172,6 +173,14 @@ function App() {
           <DashboardLayout>
             <GetContactData />
           </ DashboardLayout>
+        </ProtectedRouter>
+      } />
+      <Route path="/getDashboardStats" element={
+        <ProtectedRouter>
+
+          <DashboardLayout>
+            <GetDashboardStats />
+          </DashboardLayout>
         </ProtectedRouter>
       } />
       <Route path="/getcomplaints" element={

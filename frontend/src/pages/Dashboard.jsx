@@ -15,14 +15,14 @@ function Dashboard() {
     <div className="w-64 bg-gradient-to-r from-purple-900 to-red-600 text-white min-h-screen p-6 shadow-md fixed top-0 left-0 flex flex-col justify-between">
 
       {/* Menu Items */}
-      <ul className="flex flex-col gap-3 w-full">
+      <ul className="flex flex-col gap-8  mt-4 text-[20px] w-full">
         <Link to="/">
           <li className="p-2 rounded-md text-white hover:bg-black cursor-pointer transition flex items-center gap-2">
             <i className="fas fa-home"></i>
             Home
           </li>
         </Link>
-        <Link to="/dashboard">
+        <Link to="/getDashboardStats">
           <li className="p-2 rounded-md text-white hover:bg-black cursor-pointer transition flex items-center gap-2">
             <i className="fas fa-tachometer-alt"></i>
             Dashboard
@@ -46,24 +46,14 @@ function Dashboard() {
             Complaints
           </li>
         </Link>
-        <li className="p-2 rounded-md text-white hover:bg-black cursor-pointer transition flex items-center gap-2">
-          <i className="fas fa-shopping-cart"></i>
-          Order
-        </li>
-        <li className="p-2 rounded-md text-white hover:bg-black cursor-pointer transition flex items-center gap-2">
-          <i className="fas fa-plus-square"></i>
-          Add Order
-        </li>
+        
         <Link to="/getcontact">
           <li className="p-2 rounded-md text-white hover:bg-black cursor-pointer transition flex items-center gap-2">
             <i className="fas fa-chart-line"></i>
             Reports
           </li>
         </Link>
-        <li className="p-2 rounded-md text-white hover:bg-black cursor-pointer transition flex items-center gap-2">
-          <i className="fas fa-cog"></i>
-          Setting
-        </li>
+
       </ul>
 
       {/* Bottom User Profile under Settings */}

@@ -15,4 +15,5 @@ const ComplaintsSchema = mongoose.Schema({
     }
 })
 
-module.exports = mongoose.model("Complaints" , ComplaintsSchema)
+module.exports =
+  mongoose.models.Complaints || mongoose.model("Complaints", ComplaintsSchema);

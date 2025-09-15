@@ -8,7 +8,7 @@ const contactRouter = require("./Routers/ContactRouter")
 const customerRouter = require("./Routers/customerRoute")
 const adminRouter = require("./Routers/adminRoute")
 const ratingRouter = require("./Routers/ratingRouter")
-
+const dashboardRouter = require("./Routers/dashboardRoutes")
 const app = express()
 const PORT = process.env.port || 9000
 
@@ -28,7 +28,7 @@ app.use(contactRouter)
 app.use(customerRouter)
 app.use(adminRouter)
 app.use(ratingRouter)
-
+app.use(dashboardRouter)
 app.use("/allImages", express.static("document"))
 
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`))
