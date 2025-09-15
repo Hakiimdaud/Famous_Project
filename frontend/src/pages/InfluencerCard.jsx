@@ -16,6 +16,31 @@ export default function InfluencerCard({ item, onRate }) {
     ));
   };
 
+  // Function to get social media icon based on platform name
+  const getSocialIcon = (platform) => {
+    const platformLower = platform.toLowerCase();
+    
+    if (platformLower.includes("face") || platformLower === "fb") {
+      return "fab fa-facebook-f";
+    } else if (platformLower.includes("twitter") || platformLower === "x") {
+      return "fab fa-twitter";
+    } else if (platformLower.includes("insta")) {
+      return "fab fa-instagram";
+    } else if (platformLower.includes("you")) {
+      return "fab fa-youtube";
+    } else if (platformLower.includes("tiktok")) {
+      return "fab fa-tiktok";
+    } else if (platformLower.includes("linkedin")) {
+      return "fab fa-linkedin-in";
+    } else if (platformLower.includes("snap")) {
+      return "fab fa-snapchat-ghost";
+    } else if (platformLower.includes("pinterest")) {
+      return "fab fa-pinterest-p";
+    } else {
+      return "fas fa-share-alt"; // Default icon
+    }
+  };
+
   // Animations
   const cardVariant = {
     hidden: { opacity: 0, y: 30 },
@@ -75,10 +100,35 @@ export default function InfluencerCard({ item, onRate }) {
 
         <p className="text-gray-600 mb-4 line-clamp-2">{item.description}</p>
 
+        {/* Social Media Icons */}
+        {item.social && item.social.length > 0 && (
+          <div className="mb-4">
+            <div className="flex flex-wrap gap-2">
+              {item.social.slice(0, 4).map((social, index) => (
+                <a
+                  key={index}
+                  href={social.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-purple-600 hover:text-purple-800 hover:bg-gray-200 transition-colors"
+                  title={social.platform}
+                >
+                  <i className={getSocialIcon(social.platform)}></i>
+                </a>
+              ))}
+              {item.social.length > 4 && (
+                <div className="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 text-xs" title="More social links">
+                  +{item.social.length - 4}
+                </div>
+              )}
+            </div>
+          </div>
+        )}
+
         <div className="mt-auto flex flex-col space-y-3">
           <Link to={`/viewfamous/${item._id}`}>
             <button className="w-full bg-gradient-to-r from-red-600 to-red-700 text-white py-2.5 rounded-xl hover:from-red-700 hover:to-red-800 transition-all duration-300 font-medium flex items-center justify-center">
-              View Details
+              <i className="fas fa-eye mr-2"></i> View Details
             </button>
           </Link>
           {onRate && (
@@ -86,7 +136,7 @@ export default function InfluencerCard({ item, onRate }) {
               onClick={() => onRate(item)}
               className="w-full bg-gradient-to-r from-yellow-500 to-yellow-600 text-white py-2.5 rounded-xl hover:from-yellow-600 hover:to-yellow-700 transition-all duration-300 font-medium flex items-center justify-center"
             >
-              Rate This Influencer
+              <i className="fas fa-star mr-2"></i> Rate This Influencer
             </button>
           )}
         </div>

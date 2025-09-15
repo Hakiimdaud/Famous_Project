@@ -4,7 +4,7 @@ import axios from "axios";
 
 const ViewFamous = () => {
   const { id } = useParams();
-  const navigate = useNavigate(); // Hook for navigation
+  const navigate = useNavigate();
   const [famous, setFamous] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -21,6 +21,31 @@ const ViewFamous = () => {
       });
   }, [id]);
 
+  // Function to get social media icon based on platform name
+  const getSocialIcon = (platform) => {
+    const platformLower = platform.toLowerCase();
+    
+    if (platformLower.includes("face") || platformLower === "fb") {
+      return "fab fa-facebook-f";
+    } else if (platformLower.includes("twitter") || platformLower === "x") {
+      return "fab fa-twitter";
+    } else if (platformLower.includes("insta")) {
+      return "fab fa-instagram";
+    } else if (platformLower.includes("you")) {
+      return "fab fa-youtube";
+    } else if (platformLower.includes("tiktok")) {
+      return "fab fa-tiktok";
+    } else if (platformLower.includes("linkedin")) {
+      return "fab fa-linkedin-in";
+    } else if (platformLower.includes("snap")) {
+      return "fab fa-snapchat-ghost";
+    } else if (platformLower.includes("pinterest")) {
+      return "fab fa-pinterest-p";
+    } else {
+      return "fas fa-share-alt"; // Default icon
+    }
+  };
+
   if (loading) return <div className="text-center mt-10">Loading...</div>;
   if (!famous) return <div className="text-center mt-10 text-red-500">Famous not found</div>;
 
@@ -28,7 +53,7 @@ const ViewFamous = () => {
     <div className="max-w-4xl mx-auto p-6 bg-white rounded-2xl shadow-lg mt-10 mb-10">
       {/* Back Button */}
       <button
-        onClick={() => navigate(-1)} // Navigate back
+        onClick={() => navigate(-1)}
         className="flex items-center gap-2 mb-6 text-gray-600 hover:text-gray-800 font-medium"
       >
         <svg
@@ -83,6 +108,27 @@ const ViewFamous = () => {
               </span>
             </p>
           </div>
+
+          {/* Social Media Links Section */}
+          {famous.social && famous.social.length > 0 && (
+            <div className="bg-gray-50 p-4 rounded-xl mb-6">
+              <h3 className="text-lg font-semibold text-gray-800 mb-3">Follow On</h3>
+              <div className="flex flex-wrap gap-3">
+                {famous.social.map((social, index) => (
+                  <a
+                    key={index}
+                    href={social.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-center w-10 h-10 rounded-full bg-white border border-gray-200 text-purple-600 hover:text-purple-800 hover:bg-purple-50 transition-colors shadow-sm"
+                    title={social.platform}
+                  >
+                    <i className={getSocialIcon(social.platform)}></i>
+                  </a>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
 
         {/* Right Column */}
@@ -91,6 +137,20 @@ const ViewFamous = () => {
           <span className="bg-red-100 text-red-700 px-3 py-1 rounded-full text-sm font-medium">
             {famous.category}
           </span>
+
+          {/* Contact Information */}
+          <div className="mt-6 bg-blue-50 p-4 rounded-xl">
+            <h3 className="text-lg font-semibold text-gray-800 mb-3">Information</h3>
+            <div className="space-y-2">
+              
+              {famous.address && (
+                <div className="flex items-center">
+                  <i className="fas fa-map-marker-alt text-blue-500 w-5 mr-3"></i>
+                  <span className="text-gray-700">{famous.address}</span>
+                </div>
+              )}
+            </div>
+          </div>
 
           <div className="bg-gray-50 p-4 rounded-xl mt-6">
             <h3 className="text-lg font-semibold text-gray-800 mb-3">About</h3>
