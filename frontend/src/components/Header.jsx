@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion"; // ✅ animation
 function Header() {
   const [isOpen, setIsOpen] = useState(false);
@@ -45,12 +45,13 @@ function Header() {
         transition={{ delay: 0.5, duration: 0.7 }}
         className="hidden md:flex gap-8 text-gray-700"
       >
-        <Link className="font-bold text-lg text-black hover:text-red-500 transition" to="/">Home</Link>
-        <Link className="font-bold text-lg text-black hover:text-red-500 transition" to="/influencers">Influencers</Link>
-        <Link className="font-bold text-lg text-black hover:text-red-500 transition" to="/complaints">Complaints</Link>
-        <Link className="font-bold text-lg text-black hover:text-red-500 transition" to="/contact">Contact</Link>
+        <NavLink className="font-bold text-lg text-black hover:text-red-500 transition" to="/">Home</NavLink>
+        <NavLink className="font-bold text-lg text-black hover:text-red-500 transition" to="/influencers">Influencers</NavLink>
+        <NavLink className="font-bold text-lg text-black hover:text-red-500 transition" to="/aboutus">About Us</NavLink>
+        <NavLink className="font-bold text-lg text-black hover:text-red-500 transition" to="/complaints">Complaints</NavLink>
+        <NavLink className="font-bold text-lg text-black hover:text-red-500 transition" to="/contact">Contact</NavLink>
         {loggedInUser && loggedInUser.type === "admin" && (
-          <Link className="font-bold text-lg text-black hover:text-red-500 transition" to="/getDashboardStats">Admin Dashboard</Link>
+          <NavLink className="font-bold text-lg text-black hover:text-red-500 transition" to="/getDashboardStats">Admin Dashboard</NavLink>
         )}
       </motion.nav>
 
@@ -81,16 +82,16 @@ function Header() {
           transition={{ delay: 0.7, duration: 0.7 }}
           className="hidden md:flex gap-4 items-center"
         >
-          <Link to="/login">
+          <NavLink to="/login">
             <button className="text-gray-600 hover:text-red-500 font-semibold border-2 border-black px-6 py-1 rounded-md transition">
               Login
             </button>
-          </Link>
-          <Link to="/register">
+          </NavLink>
+          <NavLink to="/register">
             <button className="text-gray-600 hover:text-red-500 font-semibold border-2 border-black px-6 py-1 rounded-md transition">
               Register
             </button>
-          </Link>
+          </NavLink>
         </motion.div>
       )}
 
@@ -114,12 +115,12 @@ function Header() {
           !isOpen && "pointer-events-none"
         }`}
       >
-        <Link className="font-semibold text-lg hover:text-red-500 transition" to="/" onClick={() => setIsOpen(false)}>Home</Link>
-        <Link className="font-semibold text-lg hover:text-red-500 transition" to="/influencers" onClick={() => setIsOpen(false)}>Influencers</Link>
-        <Link className="font-semibold text-lg hover:text-red-500 transition" to="/complaints" onClick={() => setIsOpen(false)}>Complaints</Link>
-        <Link className="font-semibold text-lg hover:text-red-500 transition" to="/contact" onClick={() => setIsOpen(false)}>Contact</Link>
+        <NavLink className="font-semibold text-lg hover:text-red-500 transition" to="/" onClick={() => setIsOpen(false)}>Home</NavLink>
+        <NavLink className="font-semibold text-lg hover:text-red-500 transition" to="/influencers" onClick={() => setIsOpen(false)}>Influencers</NavLink>
+        <NavLink className="font-semibold text-lg hover:text-red-500 transition" to="/complaints" onClick={() => setIsOpen(false)}>Complaints</NavLink>
+        <NavLink className="font-semibold text-lg hover:text-red-500 transition" to="/contact" onClick={() => setIsOpen(false)}>Contact</NavLink>
         {loggedInUser && loggedInUser.type === "admin" && (
-          <Link className="font-semibold text-lg hover:text-red-500 transition" to="/getDashboardStats" onClick={() => setIsOpen(false)}>Admin Dashboard</Link>
+          <NavLink className="font-semibold text-lg hover:text-red-500 transition" to="/getDashboardStats" onClick={() => setIsOpen(false)}>Admin Dashboard</NavLink>
         )}
 
         {loggedInUser ? (
@@ -138,16 +139,16 @@ function Header() {
           </>
         ) : (
           <>
-            <Link to="/login" onClick={() => setIsOpen(false)}>
+            <NavLink to="/login" onClick={() => setIsOpen(false)}>
               <button className="text-gray-600 hover:text-red-500 font-semibold border-2 border-black px-6 py-1 rounded-md transition">
                 Login
               </button>
-            </Link>
-            <Link to="/register" onClick={() => setIsOpen(false)}>
+            </NavLink>
+            <NavLink to="/register" onClick={() => setIsOpen(false)}>
               <button className="text-gray-600 hover:text-red-500 font-semibold border-2 border-black px-6 py-1 rounded-md transition">
                 Register
               </button>
-            </Link>
+            </NavLink>
           </>
         )}
       </motion.div>

@@ -19,7 +19,7 @@ import NotFound from "./pages/NotFound ";
 import ProfileDashboard from "./pages/ProfileDashboard";
 import Footer from "./components/Footer";
 import GetDashboardStats from "./pages/getDashboardStats";
-
+import AboutUs from "./pages/AboutUs";
 // Layout leh Header (Home ama pages kale)
 function MainLayout({ children }) {
   return (
@@ -50,6 +50,14 @@ function App() {
         element={
           <MainLayout>
             <Home />
+          </MainLayout>
+        }
+      />
+      <Route
+        path="/aboutus"
+        element={
+          <MainLayout>
+            <AboutUs />
           </MainLayout>
         }
       />

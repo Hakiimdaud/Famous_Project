@@ -32,8 +32,8 @@ function GetComplaintsData() {
           <tbody>
             {contacts.length > 0 ? (
               contacts.map((item, index) => (
-                <tr key={item._id} className="border-t hover:bg-gray-50 transition">
-                  <td className="px-4 py-2 text-center">{index + 1}</td>
+                <tr key={item._id} className="border-t hover:bg-gray-50 transition text-center ">
+                  <td className="px-4 py-2 text-left">{index + 1}</td>
                   <td className="px-4 py-2">{item.name}</td>
                   <td className="px-4 py-2">{item.person}</td>
                   <td className="px-4 py-2">{item.body}</td>
