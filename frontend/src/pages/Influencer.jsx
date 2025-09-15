@@ -53,7 +53,7 @@ function Influencer() {
   return (
     <div className="flex">
      
-      <div className="p-8 min-h-screen  w-full overflow-hidden">
+      <div className="p-8 min-h-screen ml-52  w-full overflow-hidden">
         <div className="flex justify-between items-center mb-6">
           <h2 className="text-3xl font-bold text-gray-800">Influencer List</h2>
           <Link
